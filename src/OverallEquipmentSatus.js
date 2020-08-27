@@ -16,7 +16,7 @@ function OverallEquipmentSatus() {
             <DivPress>
                 <PLeftPress><img src={Left} /></PLeftPress>
                 <div>
-
+                    <div></div>
                 </div>
                 <PRightPress><img src={Right} /></PRightPress>
             </DivPress>
@@ -106,12 +106,28 @@ const PRightPress = styled.button`
 
 const DivPress = styled.div`
     width: 1100px;
-    height: 234px;
+    height: 224px;
+    padding-top: 10px;
     object-fit: contain;
     border-radius: 6px;
     background-color: #353b48;
     margin-top: 12px;
     position: relative;
+
+    &>div {
+        width: 150px;
+        height: 214px;
+        border-radius: 4px;
+        background-color: #f4f6fa;
+        margin-left: 60px;
+
+        &>div {
+            width: 150px;
+            height: 38px;
+            background-color: #25b4b4;
+            border-radius: 4px;
+        }
+    }
 `
 
 export default OverallEquipmentSatus;

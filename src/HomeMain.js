@@ -6,18 +6,23 @@ import OverallEquipmentSatus from './OverallEquipmentSatus'
 import ProductionPlanDetails from './ProductionPlanDetails'
 
 function App() {
+
+    function refreshPage() {
+        window.location.reload(false);
+    }
+
     return (
         <>
-            <DivFrist>
-                <DivTwo>
+            <Wrapper>
+                <InnerWrappe>
                     <Div>
                         <p>전체 장비 현황</p>
-                        <button><img src={Refresh} /></button>
+                        <button onClick={refreshPage}><img src={Refresh} /></button>
                     </Div>
                     <OverallEquipmentSatus />
                     <ProductionPlanDetails />
-                </DivTwo>
-            </DivFrist>
+                </InnerWrappe>
+            </Wrapper>
         </>
     )
 }
@@ -48,12 +53,13 @@ const Div = styled.div`
     }
 `
 
-const DivFrist = styled.div`
+const Wrapper = styled.div`
     width: 1160px;
     margin: 0 auto;
+    position: relative;
 `
 
-const DivTwo = styled.div`
+const InnerWrappe = styled.div`
     width: 100%;
 `
 

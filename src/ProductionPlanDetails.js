@@ -47,26 +47,6 @@ function ProductionPlanDetails({ title, item, ProductionTarget, ProcessName, wor
                             ))}
                         </div>
                     </div>
-                    {/* {
-                        array.map(() => (
-                            array === 0 ?
-                                <div style={{ backgroundColor: '#25b4b4' }}>
-                                    <img src={MenuBar} /><p>{array}</p>
-                                </div>
-                                :
-                                array === 1 ?
-                                    <div style={{ backgroundColor: '#25b4b4' }}>
-                                        <img src={MenuBar} /><p>{array}</p>
-                                    </div>
-                                    :
-                                    array === 2 ?
-                                        <div style={{ backgroundColor: '#2660fd' }}>
-                                            <img src={MenuBar} /><p>{array}</p>
-                                        </div>
-                                        :
-                                        null
-                        ))
-                    } */}
                     <table>
                         <tbody style={{ display: 'flex' }}>
                             <tr>

@@ -9,7 +9,7 @@ import Rotation from "./Img/Rotation.png"
 import { BsFillCircleFill } from "react-icons/bs";
 
 
-function OverallEquipmentSatus({ img, text }) {
+function PressBox({ img, text }) {
 
     return (
         <>
@@ -26,7 +26,21 @@ function OverallEquipmentSatus({ img, text }) {
     )
 }
 
-function PressBox() {
+function Factorys({ pk, name }) {
+    return (
+        <>
+            <Div>
+                <ButtonLeft><img src={Left} /></ButtonLeft>
+                <div>
+                    <P>{pk}{name}</P>
+                </div>
+                <ButotonRight><img src={Right} /></ButotonRight>
+            </Div>
+        </>
+    )
+}
+
+function OverallEquipmentSatus() {
     const Press = [
         {
             id: 1,
@@ -60,19 +74,38 @@ function PressBox() {
         },
     ]
 
+    const results = [
+        {
+            id: 1,
+            pk: '1공장',
+            name: '(공장명 000 000 0000 )'
+        }
+    ]
+
 
     return (
         <>
-            <Div>
-                <ButtonLeft><img src={Left} /></ButtonLeft><P>1공장(공장명 000 000 0000 )</P><ButotonRight><img src={Right} /></ButotonRight>
-            </Div>
+
+
+            {
+                results.map((obj, i) => (
+                    <>
+                        <Factorys
+                            key={i}
+                            id={i}
+                            pk={obj.pk}
+                            name={obj.name}
+                        />
+                    </>
+                ))
+            }
+
             <DivPress>
                 <PLeftPress><img src={Left} /></PLeftPress>
-
                 <PressDiv>
                     {
                         Press.map((obj, i) => (
-                            <OverallEquipmentSatus
+                            <PressBox
                                 key={i}
                                 id={i}
                                 img={obj.img}
@@ -83,20 +116,20 @@ function PressBox() {
                 </PressDiv>
                 <PRightPress><img src={Right} /></PRightPress>
             </DivPress>
-            <DivPage>
-                <span style={{ color: '#19b9df'/*  : '#c9c9c9' */ }}>
+            {/*  <DivPage>
+                <span style={{ color: '#19b9df'}}>
                     <BsFillCircleFill style={{ width: 10, height: 10 }} />
                 </span>
-                <span style={{ color: '#666d79'/*  : '#c9c9c9' */ }}>
+                <span style={{ color: '#666d79'}}>
                     <BsFillCircleFill style={{ width: 10, height: 10 }} />
                 </span>
-                <span style={{ color: '#666d79'/*  : '#c9c9c9' */ }}>
+                <span style={{ color: '#666d79'}}>
                     <BsFillCircleFill style={{ width: 10, height: 10 }} />
                 </span>
-                <span style={{ color: '#666d79'/*  : '#c9c9c9' */ }}>
+                <span style={{ color: '#666d79'}}>
                     <BsFillCircleFill style={{ width: 10, height: 10 }} />
                 </span>
-            </DivPage>
+            </DivPage> */}
         </>
     )
 }
@@ -107,12 +140,16 @@ const Div = styled.div`
     border-radius: 6px;
     background-color: #111319;
     position: relative;
+    display: flex;
+
+    &>div {
+        margin: 0 auto;
+    }
 `
 
 const P = styled.p`
     font-size: 20px;
     font-weight: bold;
-    letter-spacing: 0.4px;
     text-align: center;
     color: #ffffff;
     padding: 10px;
@@ -121,12 +158,13 @@ const P = styled.p`
 const ButtonLeft = styled.button`
   width: 10px;
   height: 20px;
-  position: absolute;
-  top: 15px;
-  left: 10px;
+  /* position: absolute; */
+ /*  top: 15px;
+  left: 10px; */
   border: none;
   background-color: transparent;
-
+  margin: auto 0;
+  margin-left: 20px;
   img {
     width: 10px;
     height: 20px;
@@ -136,12 +174,13 @@ const ButtonLeft = styled.button`
 const ButotonRight = styled.button`
     width: 10px;
     height: 20px;
-    position: absolute;
-    right: 10px;
-    top: 15px;
+    /* position: absolute; */
+  /*   right: 10px;
+    top: 15px; */
     border: none;
     background-color: transparent;
-
+    margin: auto 0;
+    margin-right: 20px;
     img {
         width: 10px;
         height: 20px;
@@ -151,11 +190,13 @@ const ButotonRight = styled.button`
 const PLeftPress = styled.button`
   width: 10px;
   height: 20px;
-  position: absolute;
-  top: 100px;
-  left: 10px;
+  /* position: absolute; */
+ /*  top: 100px;
+  left: 10px; */
   border: none;
   background-color: transparent;
+  margin: auto 0;
+  margin-left: 20px;
 
   img {
     width: 10px;
@@ -167,11 +208,12 @@ const PRightPress = styled.button`
     width: 10px;
     height: 20px;
     color: #666d79;
-    position: absolute;
-    right: 10px;
-    top: 100px;
+    /* position: absolute; */
+    /* right: 10px;
+    top: 100px; */
     border: none;
     background-color: transparent;
+    margin: auto 0;
 
     img {
         width: 10px;
@@ -185,18 +227,18 @@ const DivPress = styled.div`
     width: 1100px;
     height: 224px;
     padding-top: 10px;
-    object-fit: contain;
     border-radius: 6px;
     background-color: #353b48;
     margin-top: 12px;
     position: relative;
+    display: flex;
    
 `
 
 const PressDiv = styled.div`
-display: flex;
-margin-left: 30px;
- &>div {
+    display: flex;
+    margin-right: 20px;
+     &>div {
         width: 150px;
         height: 214px;
         border-radius: 4px;
@@ -218,42 +260,41 @@ margin-left: 30px;
                 border: none;
                 margin-top: 4px;
                 margin-left: 3px;
+
                 &>img{
                     width: 25px;
                     height: 25px;
                     margin-top: 4px;
                     margin-left: 3px;
+                    }
                 }
-            }
+
             &>img {
                 width: 18px;
                 height: 18px;
                 position: absolute;
                 right: 12px;
                 top: 10px;
-
-
-            /* @keyframes rotate_image{
-                100% {
-                    transform: rotate(360deg);
-                } */
             }
         }
-        img {
-            width: 150px;
-            height: 136px;
-        }
 
-        p {
-            font-family: NotoSansCJKkr;
-            font-size: 18px;
-            font-weight: bold;
-            line-height: 1.44;
-            text-align: center;
-            color: #0d0d0d;
-            padding-top: 3px;
+
+            &>img {
+                width: 150px;
+                height: 136px;
+            }
+
+            p {
+                
+                font-size: 18px;
+                font-weight: bold;
+                line-height: 1.44;
+                text-align: center;
+                color: #0d0d0d;
+                padding-top: 3px;
+            }
         }
-    }
+        
 `
 
 const DivPage = styled.div`
@@ -266,4 +307,4 @@ const DivPage = styled.div`
     }
 `
 
-export default PressBox;
+export default OverallEquipmentSatus;

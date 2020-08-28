@@ -5,10 +5,10 @@ import "./App.css"
 import DropDown from './Img/DropDown.png'
 import MenuBar from './Img/ic_menu_b.png'
 
-function ProductionPlanDetails({ title, item, ProductionTarget, ProcessName, worker }) {
+function ProductionPlanDetailsBox({ title, material_name, current_amount, ProcessName, manager_name }) {
 
     const [menubar, setMenubar] = useState('전체')
-    const [hidden, setHidden] = useState(true);
+    const [isOpen, setIsOpen] = useState(true);
 
     const array = [
         '진행',
@@ -16,11 +16,11 @@ function ProductionPlanDetails({ title, item, ProductionTarget, ProcessName, wor
         '공유'
     ]
 
-    const onClickHidden = () => {
-        if (hidden === true) {
-            setHidden(false);
+    const onClickIsOpen = () => {
+        if (isOpen === true) {
+            setIsOpen(false);
         } else {
-            setHidden(true);
+            setIsOpen(true);
         }
     }
 
@@ -29,91 +29,83 @@ function ProductionPlanDetails({ title, item, ProductionTarget, ProcessName, wor
             <MenuDiv>
                 <div>
                     <div>
-                        <div onClick={onClickHidden} style={{ backgroundColor: menubar === '진행' ? '#25b4b4' : '#b3b3b3 ' && menubar === '완료' ? '#2660fd' : '#b3b3b3' && menubar === '공유' ? '#dd4bbe' : '#b3b3b3' }}>
+                        <div onClick={onClickIsOpen} style={{ backgroundColor: menubar === '진행' ? '#25b4b4' : '#b3b3b3 ' && menubar === '완료' ? '#2660fd' : '#b3b3b3' && menubar === '공유' ? '#dd4bbe' : '#b3b3b3' }}>
                             <img src={MenuBar} /><p>{menubar}</p>
                         </div>
 
-                        <div hidden={hidden}>
+                        <div hidden={isOpen}>
                             {array.map((v, i) => (
                                 <>
                                     <p key={i} onClick={
                                         () => {
                                             setMenubar(v);
-                                            setHidden(true);
+                                            setIsOpen(true);
                                         }
-                                    }>{v}</p>
+                                    }>{v}</p>33333
                                     <hr />
                                 </>
                             ))}
                         </div>
                     </div>
-                    <table>
-                        <tbody style={{ display: 'flex' }}>
+                    <Table>
+                        <tbody>
                             <tr>
-                                <TdTitle><p>{title}</p></TdTitle>
-                            </tr>
-                            <tr>
-                                <TdItem><p>{item}</p></TdItem>
-                            </tr>
-                            <tr>
-                                <TdProdction><p>{ProductionTarget}</p></TdProdction>
-                            </tr>
-                            <tr>
-                                <TdProcessName><p>{ProcessName}</p></TdProcessName>
-                            </tr>
-                            <tr>
-                                <TdWorker><p>{worker}</p></TdWorker>
+                                <td><p>{title}</p></td>
+                                <td><p>{material_name}</p></td>
+                                <td><p>{current_amount}</p></td>
+                                <td><p>{ProcessName}</p></td>
+                                <td><p>{manager_name}</p></td>
                             </tr>
                         </tbody>
-                    </table>
+                    </Table>
                 </div>
             </MenuDiv>
         </>
     )
 }
 
-function ProductionPlanDetailsMap() {
+function ProductionPlanDetails() {
 
-    const Production = [
+    const info_list = [
         {
             id: 1,
             title: '제목들이랍니다',
-            item: '품목(품목명)',
-            ProductionTarget: '10,000',
+            material_name: '품목(품목명)',
+            current_amount: '10,000',
             ProcessName: '공정명 01',
-            worker: '홍길동'
+            manager_name: '홍길동',
         },
         {
             id: 2,
             title: '제목들이랍니다',
-            item: '품목(품목명)',
-            ProductionTarget: '10,000',
+            material_name: '품목(품목명)',
+            current_amount: '10,000',
             ProcessName: '공정명 01',
-            worker: '홍길동'
+            manager_name: '홍길동'
         },
         {
             id: 3,
             title: '제목들이랍니다',
-            item: '품목(품목명)',
-            ProductionTarget: '10,000',
+            material_name: '품목(품목명)',
+            current_amount: '10,000',
             ProcessName: '공정명 01',
-            worker: '홍길동'
+            manager_name: '홍길동'
         },
         {
             id: 4,
             title: '제목들이랍니다',
-            item: '품목(품목명)',
-            ProductionTarget: '10,000',
+            material_name: '품목(품목명)',
+            current_amount: '10,000',
             ProcessName: '공정명 01',
-            worker: '홍길동'
+            manager_name: '홍길동'
         },
         {
             id: 5,
             title: '제목들이랍니다',
-            item: '품목(품목명)',
-            ProductionTarget: '10,000',
+            material_name: '품목(품목명)',
+            current_amount: '10,000',
             ProcessName: '공정명 01',
-            worker: '홍길동'
+            manager_name: '홍길동'
         }
     ]
 
@@ -142,16 +134,16 @@ function ProductionPlanDetailsMap() {
             </Menu>
 
             {
-                Production.map((obj, i) => {
+                info_list.map((obj, i) => {
                     return (
-                        <ProductionPlanDetails
+                        <ProductionPlanDetailsBox
                             key={i}
                             id={i}
                             title={obj.title}
-                            item={obj.item}
-                            ProductionTarget={obj.ProductionTarget}
+                            material_name={obj.material_name}
+                            current_amount={obj.current_amount}
                             ProcessName={obj.ProcessName}
-                            worker={obj.worker}
+                            manager_name={obj.manager_name}
                         />
                     )
                 })
@@ -161,8 +153,8 @@ function ProductionPlanDetailsMap() {
 }
 
 const Div = styled.div`
+    
     &>p{
-        object-fit: contain;
         font-size: 22px;
         font-weight: bold;
         margin-top: 40px;
@@ -177,10 +169,7 @@ const Div = styled.div`
         &>div {
             &:not(:last-child) {
                 padding: 8px 16px;
-                object-fit: contain;
                 border-radius: 6px;
-                object-fit: contain;
-                font-family: NotoSansCJKkr;
                 font-size: 15px;
                 font-weight: bold;
                 line-height: 1.13;
@@ -192,8 +181,6 @@ const Div = styled.div`
                 display: flex;
                 margin-left: 530px;
                 button {
-                    object-fit: contain;
-                    font-family: NotoSansCJKkr;
                     font-size: 15px;
                     font-weight: bold;
                     line-height: 1.13;
@@ -206,11 +193,8 @@ const Div = styled.div`
                 }
 
                 div {
-                    object-fit: contain;
-                    font-family: NotoSansCJKkr;
                     font-size: 15px;
                     font-weight: bold;
-                    line-height: 1.13;
                     text-align: center;
                     background-color: #717c90;
                     padding: 5px 17px;
@@ -234,14 +218,13 @@ const Div = styled.div`
 const Menu = styled.div`
     width: 1100px;
     height: 50px;
-    object-fit: contain;
     border-radius: 6px;
     background-color: #111319;
     display: flex;
     margin-top: 12px;
+    
+    font-size: 18px;
     &>p {
-        font-family: NotoSansCJKkr;
-        font-size: 18px;
         font-weight: bold;
         line-height: 0.93;
         text-align: left;
@@ -264,7 +247,6 @@ const MenuDiv = styled.div`
                     &:not(:last-child){
                         width: 98px;
                         height: 50px;
-                        object-fit: contain;
                         border-top-left-radius: 6px;
                         border-top-right-radius: 6px;
 
@@ -282,7 +264,6 @@ const MenuDiv = styled.div`
                             text-align: center;
                             color: #111319;
                             margin-left: 25px;
-                            
                         }
 
                         hr {
@@ -298,13 +279,11 @@ const MenuDiv = styled.div`
                         border-bottom-left-radius: 6px;
                         border-bottom-right-radius: 6px;
                         p {
-                            font-family: NotoSansCJKkr;
                             font-size: 14px;
                             line-height: 1.2;
                             text-align: center;
                             color: #0d0d0d;
                             padding: 8px;
-
                             :hover {
                                 height: 17px;
                                 border-radius: 6px;
@@ -313,10 +292,9 @@ const MenuDiv = styled.div`
                         }
                     }
                 }
-        }           
+            }           
         p {
             color: #ffffff;
-            object-fit: contain;
             font-size: 18px;
             font-weight: bold;
             line-height: 0.93;
@@ -324,34 +302,73 @@ const MenuDiv = styled.div`
     }
 `
 
-const TdTitle = styled.td`
-    width: 146px;
-    padding-left: 58px;
+const Table = styled.table`
     text-align: center;
-    height: 45px;
+    tbody {
+        tr{
+            td {
+                &:nth-child( 1 ){
+                    width: 146px;
+                    padding-left: 58px;
+                    height: 45px;
+                }
+                &:nth-child( 2 ){
+                    width: 212px;
+                    height: 45px;
+                }
+                &:nth-child( 3 ){
+                    width: 215px;
+                    height: 45px;
+                }
+                &:nth-child( 4 ){
+                    width: 166px;
+                    height: 45px;
+                }
+                &:nth-child( 5 ){
+                    width: 164px;
+                    height: 45px;
+                }
+            }
+        }
+
+    /* &>tr {
+        td {
+            width: 146px;
+            padding-left: 58px;
+            height: 45px;
+        }
+    }
+
+    &>tr {
+        td {
+            width: 212px;
+            height: 45px;
+            }
+    }
+
+    &>tr {
+        td {
+            width: 215px;
+            height: 45px;
+        }
+    }
+
+    &>tr {
+        td {
+            text-align: center;
+            width: 166px;
+            height: 45px;
+        }
+    }
+
+    &>tr {
+        td {
+            width: 164px;
+            height: 45px;
+        }
+    } */
+}
+
 `
 
-const TdItem = styled.td`
-    text-align: center;
-    width: 212px;
-    height: 45px;
-`
-const TdProdction = styled.td`
-    text-align: center;
-    width: 215px;
-    height: 45px;
-`
-
-const TdProcessName = styled.td`
-    text-align: center;
-    width: 166px;
-    height: 45px;
-`
-
-const TdWorker = styled.td`
-    text-align: center;
-    width: 164px;
-    height: 45px;
-`
-
-export default ProductionPlanDetailsMap;
+export default ProductionPlanDetails;

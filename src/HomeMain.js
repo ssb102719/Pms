@@ -14,14 +14,12 @@ function App() {
     return (
         <>
             <Wrapper>
-                <InnerWrappe>
-                    <Div>
-                        <p>전체 장비 현황</p>
-                        <button onClick={refreshPage}><img src={Refresh} /></button>
-                    </Div>
-                    <OverallEquipmentSatus />
-                    <ProductionPlanDetails />
-                </InnerWrappe>
+                <Div>
+                    <p>전체 장비 현황</p>
+                    <button onClick={refreshPage}><img src={Refresh} /></button>
+                </Div>
+                <OverallEquipmentSatus />
+                <ProductionPlanDetails />
             </Wrapper>
         </>
     )
@@ -30,11 +28,9 @@ function App() {
 const Div = styled.div`
     display: flex;
     p {
-        object-fit: contain;
         font-size: 22px;
         font-weight: bold;
         line-height: 4.55;
-        letter-spacing: 0.44px;
         text-align: left;
         color: #ffffff;
         margin-right: 12px;
@@ -57,10 +53,9 @@ const Wrapper = styled.div`
     width: 1160px;
     margin: 0 auto;
     position: relative;
+    font-family: NotoSansCJKkr;
+
 `
 
-const InnerWrappe = styled.div`
-    width: 100%;
-`
 
 export default App;
